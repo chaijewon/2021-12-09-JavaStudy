@@ -228,10 +228,13 @@ class MyDate
    public void process() // 조립후 출력 => 결과값이 없다 (void)
    {
 	   // 사용자 요청값 받기 
-	   year=input("년도");
-	   month=input("월");
+	   year=input("년도");// year=0,month=0,week=0
+	   // year = 2021
+	   // month = 12
+	   month=input("월"); // lastday[month-1] => lastday[-1]
 	   System.out.println(year+"년도 "+month+"월");
 	   week=getWeek();
+	   // week=2
 	   datePrint();
 	   
    }

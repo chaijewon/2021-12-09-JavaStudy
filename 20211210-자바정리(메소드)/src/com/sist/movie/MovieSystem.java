@@ -33,6 +33,8 @@ public class MovieSystem {
 		 {
 			
 			 String[] rm=m[j].split("\\|");
+			 // Split => 정규식 ( ^ , $ , + , * , | , .)
+			 // AI (형태분석) 
 			 MovieVO vo=new MovieVO();
 			 vo.setNo(Integer.parseInt(rm[0]));// String => int
 			 // Integer.parseInt ==> Wrapper (각 데이터형별로 클래스가 만들어져 있다)
@@ -51,15 +53,58 @@ public class MovieSystem {
 	  }catch(Exception ex){}
   }
   
-  public static void main(String[] args) {
-	   for(MovieVO vo:MovieSystem.movie_data)
-	   {
-		   System.out.println("제목:"+vo.getTitle());
-		   System.out.println("장르:"+vo.getGenre());
-		   System.out.println("===============================");
-	   }
+  // 메소드 (영화 관련)
+  // 1. 찾기 (제목 , 출연 , 장르) => 결과를 받아서 출력 , 메소드안에 출력 
+  // 메소드 안에서 결과값을 출력 => void
+  public void titleFind(String title)
+  {
+	  for(MovieVO vo:movie_data)
+	  {
+		  if(vo.getTitle().contains(title))
+		  {
+			  // contains(title) => 포함 ==> 오라클 (LIKE)
+			  System.out.println(vo.getTitle());
+		  }
+	  }
   }
-	
+  
+  public void actorFind(String name)
+  {
+	  for(MovieVO vo:movie_data)
+	  {
+		  if(vo.getActor().contains(name))
+		  {
+			  // contains(title) => 포함 ==> 오라클 (LIKE)
+			  System.out.println(vo.getTitle()+"("+vo.getActor()+")");
+		  }
+	  }
+  }
+  
+  public void genreFind(String genre)
+  {
+	  for(MovieVO vo:movie_data)
+	  {
+		  if(vo.getGenre().contains(genre))
+		  {
+			  // contains(title) => 포함 ==> 오라클 (LIKE)
+			  System.out.println(vo.getTitle()+"("+vo.getGenre()+")");
+		  }
+	  }
+  }
+
+  public static void main(String[] args) {
+	MovieSystem ms=new MovieSystem();
+	Scanner scan=new Scanner(System.in);
+	System.out.print("영화 제목 입력:");
+	String title=scan.next();
+	ms.titleFind(title);
+	System.out.print("주인공 이름 입력:");
+	String actor=scan.next();
+	ms.actorFind(actor);
+	System.out.print("장르 입력:");
+	String genre=scan.next();
+    ms.genreFind(genre);
+  }
 }
 
 

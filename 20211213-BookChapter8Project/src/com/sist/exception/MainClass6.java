@@ -22,7 +22,7 @@ public class MainClass6 {
 				// Random r=new Random() ==> r.nextInt(45)+1
 				// Math => random() , ceil() : 올림 (총페이지)
 				// while 종료 
-				bCheck=false;
+				bCheck=false; //반복문 => default 설정 
 				for(int j=0;j<i;j++)
 				{
 					if(com[j]==su)// 중복된 숫자가 있는지 확인
@@ -37,7 +37,20 @@ public class MainClass6 {
 			// 3. 중복이 없으면 ==> com배열에 저장 
 			com[i]=su;
 		}
-		// 결과 출력 ==> 예외처리 
+		// 결과 출력 ==> 예외처리 ==> 15 , 44
+		//try
+		//{
+			for(int i:com)
+			{
+				System.out.print(i+" ");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		//}catch(Exception ex) {}
 	}
 
 }

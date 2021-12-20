@@ -34,6 +34,8 @@ public class MainClass13 {
         map.put("춘향이", "78,89,50");
         map.put("이순신", "77,88,99");
         
+        map.forEach((k,v)->System.out.println("["+k+","+v+"]"));
+        
         // 홍길동의 성적표 
         /*String score=(String)map.get("홍길동");
         String[] ss=score.split(",");

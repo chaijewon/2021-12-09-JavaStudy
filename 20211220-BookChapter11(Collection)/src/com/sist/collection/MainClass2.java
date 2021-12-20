@@ -26,6 +26,70 @@ public class MainClass2 {
 		// Vector waitVc=new Vector() // 대기실 
 		// Vector roomVc= new Vector() // 방정보
 		// Vector userVc=new Vector() // 방안에 있는 사람 정보 
+		// 데이터 추가 
+		vec.add("홍길동");//0
+		vec.addElement("심청이");//1
+		vec.add("박문수");//2
+		vec.addElement("이순신");//3
+		vec.add("강감찬");//4
+		// 추가된 데이터 출력
+		System.out.println("저장된 인원수:"+vec.size());
+		for(int i=0;i<vec.size();i++)
+		{
+			String name=(String)vec.elementAt(i);
+			// Object elementAt(int index) , Object get(int index)
+			/*
+			 *     Object 
+			 *     ======
+			 *       |
+			 *     String
+			 */
+			System.out.println(i+"."+name);
+			
+		}
+		System.out.println("====== 삭제후 =======");
+		vec.removeElementAt(2); // vec.remove(1)
+		System.out.println("저장된 인원수:"+vec.size());
+		
+		for(int i=0;i<vec.size();i++)
+		{
+			String name=(String)vec.elementAt(i);
+			// Object elementAt(int index) , Object get(int index)
+			/*
+			 *     Object 
+			 *     ======
+			 *       |
+			 *     String
+			 */
+			System.out.println(i+"."+name);
+			
+		}
+		
+		System.out.println("===== 수정후 ========");
+		vec.set(3, "을지문덕");
+		System.out.println("저장된 인원수:"+vec.size());
+		for(int i=0;i<vec.size();i++)
+		{
+			String name=(String)vec.elementAt(i);
+			// Object elementAt(int index) , Object get(int index)
+			/*
+			 *     Object 
+			 *     ======
+			 *       |
+			 *     String
+			 */
+			System.out.println(i+"."+name);
+			
+		}
+		
+		System.out.println("===== 전체 삭제 ======");
+		vec.clear();
+		System.out.println("저장된 인원수:"+vec.size());
+		if(vec.isEmpty())
+		{
+			System.out.println("인원이 없습니다!!");
+		}
+		// 네트워크에서 한번 사용 
 		
 	}
 

@@ -59,6 +59,7 @@ public class ChatMain extends JFrame implements Runnable,ActionListener{
     	// 로그인 버튼 처리 ==> 등록 (이벤트 등록 => 콜백함수)
     	login.b1.addActionListener(this);// actionPerformed
     	login.b2.addActionListener(this);// actionPerformed
+    	wr.tf.addActionListener(this);
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -122,6 +123,29 @@ public class ChatMain extends JFrame implements Runnable,ActionListener{
 			// 결과를 읽어와라 
 			new Thread(this).start();
 			//         ===== ChatMain에 있는 run()를 호출하라
+		}
+		// 채팅 
+		else if(e.getSource()==wr.tf)
+		{
+			// enter
+			try
+			{
+				//1-1 입력된 채팅 문자열 읽기 
+				String msg=wr.tf.getText();
+				if(msg.length()<1)
+				{
+					// 입력이 안된 경우
+					wr.tf.requestFocus();
+					return;
+				}
+				
+				// 입력이 된 경우에는 서버로 전송 => 접속전체에 값을 전송
+				out.write((Function.CHAT+"|"+msg+"\n").getBytes());
+				
+				// 입력된 값을 지워준다 
+				wr.tf.setText("");
+				
+			}catch(Exception ex) {}
 		}
 	}
 	// 서버에서 응답값을 받아서 출력 

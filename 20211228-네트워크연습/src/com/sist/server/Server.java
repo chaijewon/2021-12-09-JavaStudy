@@ -36,12 +36,15 @@ public class Server implements Runnable{
 				// 클라이언트 정보 (클라이언트 : IP , PORT)
 				// Socket ==> 쓰레드에 전송하면 => 쓰레드는 한사람만 통신이 가능하게 만든다 
 				//Client:Socket=>Server정보 
+				Client client=new Client(s);
+				client.start();
 			}catch(Exception ex){}
 		}
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+         Server server=new Server();
+         new Thread(server).start();
 	}
 	/////////////////// 접속시 처리 ==> 기지국(교환)
 	// 접속자 정보를 저장한 후에 ==> Thread를 연결해 주는 역할 
@@ -92,6 +95,7 @@ public class Server implements Runnable{
 					String msg=in.readLine();
 					// readLine() => \n까지 읽는 메소드 
 					// 100|hong|홍길동|남자\n ==>
+					System.out.println("Client=>"+msg);
 					StringTokenizer st=
 							new StringTokenizer(msg,"|");
 					int protocol=Integer.parseInt(st.nextToken());

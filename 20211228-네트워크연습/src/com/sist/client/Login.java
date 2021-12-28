@@ -16,6 +16,7 @@ public class Login extends JPanel{
         tf2=new JTextField();
         
         rb1=new JRadioButton("남자");
+        rb1.setSelected(true);
         rb2=new JRadioButton("여자");
         // Group => 1개만 선택 
         ButtonGroup bg=new ButtonGroup();

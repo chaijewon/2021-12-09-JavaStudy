@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.sist.dao.Books;
 import com.sist.dao.BooksDAO;
 public class BooksManager {
     // 오라클에 연결 => BooksDAO
@@ -127,7 +128,23 @@ public class BooksManager {
 				System.out.println("isbn:"+isbn_data);
 				System.out.println("태그:"+tags_data);
 				
+				// 오라클에 데이터 첨부 
+				Books book=new Books();
+				book.setNo(i+1);
+				book.setTitle(title_data);
+				book.setPoster(poster_data);
+				book.setContent(cd);
+				book.setPrice(p);
+				book.setRegdate(regdate_data);
+				book.setIsbn(isbn_data);
+				book.setTags(tags_data);
+				
+				dao.dbInsert(book);
+				
+				// 읽은 속도 != 오라클 저장 
+				Thread.sleep(300);
 			}
+			System.out.println("*******오라클 저장 완료!!*******");
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();

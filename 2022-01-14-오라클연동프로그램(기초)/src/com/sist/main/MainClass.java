@@ -18,7 +18,7 @@ public class MainClass {
 					+e.getHiredate().toString()+" "
 					+e.getSal());
 		}*/
-		Scanner scan=new Scanner(System.in);
+		/*Scanner scan=new Scanner(System.in);
 		System.out.print("사번입력:");
 		int empno=scan.nextInt();
 		// Front(뷰단) , Back(서버단) , DBA (DB단)
@@ -33,7 +33,23 @@ public class MainClass {
 		System.out.println("입사일:"+emp.getHiredate().toString());
 		System.out.println("급여:"+emp.getSal());
 		System.out.println("성과급:"+(emp.getComm()==0?"없음":emp.getComm()));
-		System.out.println("-----------------------------------------");
+		System.out.println("-----------------------------------------");*/
+		Scanner scan=new Scanner(System.in);
+		System.out.print("검색할 사원의 이름 입력:");
+		String ename=scan.next();
+		// 오라클로부터 데이터 받기 
+		List<Emp> list=dao.empFindData(ename);
+		// 출력 => 사용자가 볼 수 있게 만들어 준다 
+		for(Emp e:list)
+		{
+			System.out.println("사번:"+e.getEmpno());
+			System.out.println("이름:"+e.getEname());
+			System.out.println("직위:"+e.getJob());
+			System.out.println("입사일:"+e.getHiredate().toString());
+			System.out.println("급여:"+e.getSal());
+			System.out.println("성과급:"+(e.getComm()==0?"없음":e.getComm()));
+			System.out.println("---------------------------");
+		}
 		
 	}
 

@@ -193,8 +193,25 @@ public class EmpDAO {
 				     +"WHERE ename LIKE '%'||?||'%'";
 		   // 자바에서 LIKE문장을 작성 할때 => '%'||?||'%'  '%?%' => 찾지 못한다 
 		   //3. 오라클로 SQL문장 전송 
+		   ps=conn.prepareStatement(sql);
+		   //3-1. ?에 값을 채워준다
+		   ps.setString(1, ename.toUpperCase());
+		   // 오라클에 저장된 데이터가 대문자 등록 : 사용자(대소문자 상관없이 입력이 가능)
 		   //4. 오라클에 실행된 결과값 읽기 
+		   ResultSet rs=ps.executeQuery();
 		   //5. 읽어 온 결과값을 List에 대입
+		   while(rs.next())
+		   {
+			   Emp e=new Emp();
+			   e.setEmpno(rs.getInt(1));
+			   e.setEname(rs.getString(2));
+			   e.setJob(rs.getString(3));
+			   e.setHiredate(rs.getDate(4)); // 컬럼의 순서 , 컬럼의 데이터형 
+			   e.setSal(rs.getInt(5));
+			   
+			   list.add(e); // 검색된 모든 사원 저장 
+		   }
+		   rs.close();
 		   ////////////////////////////////////////////////////
 	   }catch(Exception ex)
 	   {

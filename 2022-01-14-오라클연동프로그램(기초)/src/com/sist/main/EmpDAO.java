@@ -172,7 +172,42 @@ public class EmpDAO {
 	   return emp;
    }
    // 4-3 사원 찾기 (검색) => 오라클하고 자바에서 제작하는 SQL문장이 약간 틀리다 
-   // LIKE 
+   // LIKE  List<Emp> Emp(사원 1명) ==> List<Emp> : 여러명
+   /*
+    *   모든 프로그램 : 자바 , 자바스크립트 , 오라클 => 반복이 있는 경우에
+    *                메소드화 처리 
+    */
+   public List<Emp> empFindData(String ename)
+   {
+	   List<Emp> list=new ArrayList<Emp>();
+	   try
+	   {
+		   // 1. EMP => 데이터 이름 : 대문자 => 소문자,대문자 처리 가능 
+		   // ==> 자바에 주로 처리 => toUpperCase()
+		   ///////////정상적으로 수행완료시 처리문장 /////////////////
+		   //1. 오라클 연결 
+		   getConnection();
+		   //2. SQL문장 제작 
+		   String sql="SELECT empno,ename,job,hiredate,sal "
+				     +"FROM emp "
+				     +"WHERE ename LIKE '%'||?||'%'";
+		   // 자바에서 LIKE문장을 작성 할때 => '%'||?||'%'  '%?%' => 찾지 못한다 
+		   //3. 오라클로 SQL문장 전송 
+		   //4. 오라클에 실행된 결과값 읽기 
+		   //5. 읽어 온 결과값을 List에 대입
+		   ////////////////////////////////////////////////////
+	   }catch(Exception ex)
+	   {
+		   // 에러 확인 
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   // 오라클 연결 해제
+		   disConnection();
+	   }
+	   return list;
+   }
 }
 
 
